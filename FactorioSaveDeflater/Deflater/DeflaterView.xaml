@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="FactorioSaveDeflater.Deflater.DeflaterView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FactorioSaveDeflater.Deflater"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance {x:Type local:DeflaterViewModel}, IsDesignTimeCreatable=True}"
+             FontSize="16">
+    <UserControl.Resources>
+        <Style TargetType="Label">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Content="Source File:"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SourceFilePath}" IsReadOnly="True"/>
+        <Button Grid.Column="2" Grid.Row="0" Content="...Search" Command="{Binding SourceFileCommand}"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Content="Target File:"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding TargetFilePath}" IsReadOnly="True"/>
+        <Button Grid.Column="2" Grid.Row="1" Content="...Search" Command="{Binding TargetFileCommand}"/>
+
+        <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Content="Deflate" Command="{Binding DefalteCommand}" />
+
+        <ProgressBar Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" IsIndeterminate="True" Visibility="{Binding IsDeflatingVisibility}" MinHeight="30" Margin="5"/>
+
+        <TextBox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Text="{Binding Error}" Visibility="{Binding ErrorVisibility}" Foreground="Red"/>
+    </Grid>
+</UserControl>
